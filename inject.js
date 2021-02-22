@@ -6,7 +6,12 @@ Copyrights Protected
 */
 
 (async function() {
-    document.getElementsByClassName("pv-profile-section__card-action-bar pv-skills-section__additional-skills artdeco-container-card-action-bar artdeco-button artdeco-button--tertiary artdeco-button--3 artdeco-button--fluid artdeco-button--muted pv-skills-section__additional-skills--mercado")[0].click()
+
+	var skillsExpanded = document.getElementsByClassName("pv-profile-section__card-action-bar pv-skills-section__additional-skills artdeco-container-card-action-bar artdeco-button artdeco-button--tertiary artdeco-button--3 artdeco-button--fluid artdeco-button--muted pv-skills-section__additional-skills--mercado")[0].getElementsByTagName("li-icon")[0].getAttribute("type") != "chevron-down-icon";
+	if (!skillsExpanded){
+		document.getElementsByClassName("pv-profile-section__card-action-bar pv-skills-section__additional-skills artdeco-container-card-action-bar artdeco-button artdeco-button--tertiary artdeco-button--3 artdeco-button--fluid artdeco-button--muted pv-skills-section__additional-skills--mercado")[0].click()
+	}
+    
     await new Promise(r => setTimeout(r, 500));
     var counter = 0;
     while (counter < 100) {
