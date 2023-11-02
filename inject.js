@@ -1,27 +1,24 @@
-/*
-Original author: Syed Husain
-https://husainsyed.github.io
-Please do not copy without permission
-Copyrights Protected
-*/
+// Get the message button
+var messageClass = document.getElementsByClassName("entry-point profile-action-compose-option")[1];
+var messageBtn = messageClass.getElementsByTagName("button")[0];
 
-(async function() {
+// Click the message button
+messageBtn.click();
 
-	var skillsExpanded = document.getElementsByClassName("pv-profile-section__card-action-bar pv-skills-section__additional-skills artdeco-container-card-action-bar artdeco-button artdeco-button--tertiary artdeco-button--3 artdeco-button--fluid artdeco-button--muted pv-skills-section__additional-skills--mercado")[0].getElementsByTagName("li-icon")[0].getAttribute("type") != "chevron-down-icon";
-	if (!skillsExpanded){
-		document.getElementsByClassName("pv-profile-section__card-action-bar pv-skills-section__additional-skills artdeco-container-card-action-bar artdeco-button artdeco-button--tertiary artdeco-button--3 artdeco-button--fluid artdeco-button--muted pv-skills-section__additional-skills--mercado")[0].click()
-	}
-    
-    await new Promise(r => setTimeout(r, 500));
-    var counter = 0;
-    while (counter < 100) {
-        var unendorsedList = document.getElementsByClassName("pv-skill-entity__featured-endorse-button-shared  artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--1 artdeco-button--secondary ember-view");
-        for (var i = 0; i < unendorsedList.length; i++) {
-            unendorsedList[i].click();
-            await new Promise(r => setTimeout(r, 500));
-            document.getElementsByClassName("pv-endorsement-followup__radio-label t-14 t-black--light t-bold m0")[2].click()
-            document.getElementsByClassName("full-width artdeco-button artdeco-button--2 artdeco-button--primary ember-view")[0].click()
-        }
-        counter++;
-    }
-})();
+// Wait for 2 seconds after clicking the message button
+setTimeout(function() {
+    // Get the first name of the profile
+    var firstName = document.getElementsByClassName("text-heading-xlarge inline t-24 v-align-middle break-words")[0].textContent.split(" ")[0];
+
+    // Define the message template
+    var template = `Hey ${firstName},
+
+I noticed that you're in Software Industry. I'm currently working on a startup through the Antler Founder Program and we're in the user research phase, looking for areas to add value with our software. Would you be down for a 30-minute call to discuss your work and any challenges you're facing?`;
+
+    // Get the text area
+    var parentText = document.getElementsByClassName("msg-form__contenteditable t-14 t-black--light t-normal flex-grow-1 full-height notranslate")[0];
+    var actualText = parentText.getElementsByTagName("p")[0];
+
+    // Set the text area value to the template
+    actualText.textContent = template;
+}, 2000);
